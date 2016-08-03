@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SubmitComplainActivity">
+
+    <include layout="@layout/title_base"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="至少选择一个原因"
+            android:background="@color/btn"/>
+        <RadioGroup
+            android:id="@+id/complain_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/complain_reason1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              />
+            <RadioButton
+                android:id="@+id/complain_reason2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               />
+            <RadioButton
+                android:id="@+id/complain_reason3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </RadioGroup>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:src="@color/btn"/>
+
+        <EditText
+            android:id="@+id/complain_text"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/lb"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="请详细描述投诉的原因"
+            android:inputType="textEmailAddress"
+            android:padding="20dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/complain_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+         android:background="@color/system"
+        android:text="提 交"
+        android:textSize="20dp" />
+
+
+</LinearLayout>

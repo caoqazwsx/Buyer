@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Buyer</string>
+    <string name="action_settings">Settings</string>
+    <string name="server_address">http://10.0.2.2:8080</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.EditAddressActivity">
+
+    <include layout="@layout/title_base"></include>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_weight="1"
+       android:orientation="vertical"
+
+       >
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="10dp"
+           android:text="联系人"
+           android:background="@color/btn"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:padding="10dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:padding="10dp"
+               android:text="姓名："/>
+           <EditText
+               android:id="@+id/editAddress_contact"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_column="1"
+               android:background="#00000000"
+               android:hint="请填写收货人的姓名"/>
+       </LinearLayout>
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:src="@color/btn"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:padding="10dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:padding="10dp"
+               android:text="手机："/>
+           <EditText
+               android:id="@+id/editAddress_telephone"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_column="1"
+               android:background="#00000000"
+               android:hint="请填写收货手机号码"/>
+       </LinearLayout>
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:src="@color/btn"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="10dp"
+           android:text="收货地址"
+           android:background="@color/btn"/>
+
+       <LinearLayout
+           android:id="@+id/editAddress_location"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:padding="10dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:padding="10dp"
+               android:text="小区/大厦/学校："/>
+           <ImageView
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:src="@drawable/qx"/>
+           <TextView
+               android:id="@+id/editAddress_address"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:layout_column="1"
+               android:background="#00000000"
+               android:hint=""/>
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+             android:padding="10dp"
+               android:src="@drawable/qt"/>
+       </LinearLayout>
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:src="@color/btn"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:padding="10dp">
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent"
+               android:padding="10dp"
+               android:text="楼号-门牌号："/>
+           <EditText
+               android:id="@+id/editAddress_no"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_column="1"
+               android:background="#00000000"
+               android:hint="例：11号楼101室"/>
+       </LinearLayout>
+
+       <ImageView
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:src="@color/btn"/>
+
+
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/editAddress_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/system"
+            android:text="提交" />
+
+    </LinearLayout>
+
+</LinearLayout>

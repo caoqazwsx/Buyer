@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp">
+            <TextView
+                android:id="@+id/address_item_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="contact"/>
+
+            <TextView
+                android:id="@+id/address_item_telephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="telephone"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:id="@+id/address_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="address"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:paddingLeft="50dp"
+       android:paddingTop="20dp"
+       android:paddingRight="20dp">
+       <Button
+           android:id="@+id/address_item_edit"
+           android:layout_width="30dp"
+           android:layout_height="30dp"
+           android:background="@drawable/pd"/>
+       <TextView
+           android:layout_width="20dp"
+           android:layout_height="match_parent" />
+       <Button
+           android:id="@+id/address_item_delete"
+           android:layout_width="20dp"
+           android:layout_height="20dp"
+           android:background="@drawable/gt"/>
+   </LinearLayout>
+
+
+</LinearLayout>

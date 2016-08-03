@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/comment_item_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/kb"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/comment_item_account"
+                android:text="account"/>
+            <TextView
+                android:id="@+id/comment_item_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="time"/>
+        </LinearLayout>
+
+       <com.zhao.buyer.custom.Grade
+           android:id="@+id/comment_item_grade"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+       </com.zhao.buyer.custom.Grade>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:id="@+id/comment_item_text"
+            android:text="text"/>
+        <TextView
+            android:id="@+id/comment_item_reply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:padding="5dp"
+            android:visibility="gone"
+            android:background="@color/btn"
+            android:text="商家回复："/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:src="@color/btn"/>
+
+        <TextView
+            android:id="@+id/comment_item_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="food"
+            android:textSize="10dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

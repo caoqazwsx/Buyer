@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/place_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:text="name"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:id="@+id/place_item_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="city"
+        />
+    <TextView
+        android:id="@+id/place_item_district"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="district"
+        />
+
+
+
+</LinearLayout>

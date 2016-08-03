@@ -16,40 +16,59 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <ListView
+                android:id="@+id/list_sign"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"></ListView>
             <ListView
                 android:id="@+id/list_foods"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ListView>
+                android:layout_height="match_parent"
+                android:layout_weight="1"></ListView>
+
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="bottom">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dip"-->
+            <!--android:layout_weight="1">-->
 
-        <Button
-            android:id="@+id/show_cart"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:background="@drawable/ut"/>
-        <TextView
-            android:id="@+id/total_price"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="总价"/>
+            <!--<ListView-->
+                <!--android:id="@+id/list_foods"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"></ListView>-->
+        <!--</LinearLayout>-->
 
-        <Button
-            android:id="@+id/submit"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_gravity="bottom"
-            android:text="选好了"/>
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/show_cart"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/ut" />
+
+            <TextView
+                android:id="@+id/total_price"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="总价" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="bottom"
+                android:text="选好了" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

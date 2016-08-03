@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -39,18 +41,17 @@ public class FoodFragment extends Fragment {
     private int shop_id;
     private double bot_price;
     private ArrayList<Food> fooditems;
-    private  FoodItemAdapter foodItemAdapter;
+    private FoodItemAdapter foodItemAdapter;
     private View rootView;
     private ListView listView;
+    private ListView listViewSign;
     private ProgressBar progressBar;
     private Button btn_show_cart;
     private Button btn_submit;
     private TextView total_price;
     private Cart cart;
 
-    private ListView cartlv;
-    private PopupWindow cartWindow;
-    private View cartWindow_view;
+
 
     private Handler handler = new Handler() {
         @Override
@@ -60,6 +61,7 @@ public class FoodFragment extends Fragment {
                     progressBar.setVisibility(View.GONE);
                     foodItemAdapter = new FoodItemAdapter(getContext(), R.layout.listview_item_food, fooditems);
                     listView.setAdapter(foodItemAdapter);
+                    initLVSign();
                     Log.d("FoodFragment", "success init");
                     break;
                 case -1:
@@ -92,9 +94,16 @@ public class FoodFragment extends Fragment {
             View view = inflater.inflate(R.layout.fragment_food, container, false);
             progressBar = (ProgressBar) view.findViewById(R.id.progress_bar_foodlist);
             listView = (ListView) view.findViewById(R.id.list_foods);
+            listViewSign = (ListView)view.findViewById(R.id.list_sign);
             btn_show_cart = (Button) view.findViewById(R.id.show_cart);
             btn_submit = (Button) view.findViewById(R.id.submit);
             total_price = (TextView)view.findViewById(R.id.total_price);
+            listViewSign.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    listView.setSelection(position);
+                }
+            });
             btn_show_cart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -186,6 +195,17 @@ public class FoodFragment extends Fragment {
             }
         });
         checkCart();
+    }
+
+    private void initLVSign(){
+        if(listView.getCount() < 1){
+            return;
+        }
+        ArrayList<String> sign = new ArrayList<String>();
+        for(int i = 0; i < listView.getCount(); i ++){
+           sign.add(i+"");
+        }
+        listViewSign.setAdapter(new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,sign));
     }
 
     public void checkCart(){

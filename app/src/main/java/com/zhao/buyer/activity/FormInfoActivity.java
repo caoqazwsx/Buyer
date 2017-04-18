@@ -16,8 +16,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.zhao.buyer.R;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Cart;
 import com.zhao.buyer.itemmodel.CartFoodItem;
 import com.zhao.buyer.itemmodel.Form;
@@ -157,7 +157,7 @@ public class FormInfoActivity extends BaseActivity {
                 Cart.getCart().setShop_id(form.getShopId());
                 Intent it = new Intent(FormInfoActivity.this, SubmitFormActivity.class);
                 it.putExtra("shopName",form.getShopName());
-                it.putExtra(Globalvariable.CLEAR_CART,Globalvariable.CLEAR_CART);
+                it.putExtra(APPCONST.CLEAR_CART, APPCONST.CLEAR_CART);
                 startActivity(it);
             }
         });
@@ -380,7 +380,7 @@ public class FormInfoActivity extends BaseActivity {
     }
 
     private void checkFormState(String state){
-        if( state.equals(Globalvariable.WAIT_PAY)){
+        if( state.equals(APPCONST.WAIT_PAY)){
             waiPay.setText("待付款");
             changeStateTextView(waiPay);
             recoverStateTextView(accept);
@@ -390,7 +390,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.GONE);
             btn_goComment.setVisibility(View.GONE);
             btn_cancel.setVisibility(View.VISIBLE);
-        }else if(state.equals(Globalvariable.WAIT_ARRIVED)){
+        }else if(state.equals(APPCONST.WAIT_ARRIVED)){
             recoverStateTextView(waiPay);
             changeStateTextView(accept);
             recoverStateTextView(arrived);
@@ -399,7 +399,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.VISIBLE);
             btn_goComment.setVisibility(View.GONE);
             btn_cancel.setVisibility(View.GONE);
-        }else if(state.equals(Globalvariable.WAIT_ACCEPT)){
+        }else if(state.equals(APPCONST.WAIT_ACCEPT)){
             recoverStateTextView(waiPay);
             changeStateTextView(submit);
             recoverStateTextView(accept);
@@ -408,7 +408,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.GONE);
             btn_goComment.setVisibility(View.GONE);
             btn_cancel.setVisibility(View.VISIBLE);
-        }else if(state.equals(Globalvariable.WAIT_COMMENT)){
+        }else if(state.equals(APPCONST.WAIT_COMMENT)){
             recoverStateTextView(waiPay);
             recoverStateTextView(accept);
             changeStateTextView(arrived);
@@ -417,7 +417,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.GONE);
             btn_goComment.setVisibility(View.VISIBLE);
             btn_cancel.setVisibility(View.GONE);
-        }else if(state.equals(Globalvariable.FINISH)){
+        }else if(state.equals(APPCONST.FINISH)){
             recoverStateTextView(waiPay);
             recoverStateTextView(accept);
             changeStateTextView(arrived);
@@ -426,7 +426,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.GONE);
             btn_goComment.setVisibility(View.GONE);
             btn_cancel.setVisibility(View.GONE);
-        }else if(state.equals(Globalvariable.CANCEL)){
+        }else if(state.equals(APPCONST.CANCEL)){
            waiPay.setVisibility(View.GONE);
            submit.setVisibility(View.GONE);
            arrived.setVisibility(View.GONE);
@@ -436,7 +436,7 @@ public class FormInfoActivity extends BaseActivity {
             btn_confirm.setVisibility(View.GONE);
             btn_goComment.setVisibility(View.GONE);
             btn_cancel.setVisibility(View.GONE);
-        }else if(state.equals(Globalvariable.WAIT_BACK)){
+        }else if(state.equals(APPCONST.WAIT_BACK)){
             waiPay.setVisibility(View.GONE);
             submit.setVisibility(View.GONE);
             arrived.setVisibility(View.GONE);

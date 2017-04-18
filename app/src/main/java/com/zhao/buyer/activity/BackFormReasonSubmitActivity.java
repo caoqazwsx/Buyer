@@ -1,25 +1,17 @@
 package com.zhao.buyer.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhao.buyer.R;
-import com.zhao.buyer.fragment.homefragment.FormFragment;
-import com.zhao.buyer.globalvariable.Globalvariable;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.itemmodel.Cart;
-import com.zhao.buyer.itemmodel.Form;
 import com.zhao.buyer.presenter.FormPresenter;
 
 import java.io.InputStream;

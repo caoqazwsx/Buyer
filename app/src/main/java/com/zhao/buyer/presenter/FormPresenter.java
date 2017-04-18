@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.CartFoodItem;
 import com.zhao.buyer.itemmodel.Complain;
 
@@ -22,12 +22,12 @@ import java.util.ArrayList;
 public class FormPresenter extends BasePresenter {
 
     public void getFormList(final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=formlist&account=" + Utility.encode(Globalvariable.ACCOUNT);
+        String address = APPCONST.SERVER_ADDRESS + "type=formlist&account=" + Utility.encode(APPCONST.ACCOUNT);
         getList(address, listener);
     }
 
     public void getFormInfo(long id,final HttpCallbackListener listener){
-        String address = Globalvariable.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from Form where id ="+id);
+        String address = APPCONST.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from Form where id ="+id);
         getList(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
@@ -68,35 +68,35 @@ public class FormPresenter extends BasePresenter {
     }
 
     public void deleteFormItem(long id, final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=deleteform&formId=" + id;
+        String address = APPCONST.SERVER_ADDRESS + "type=deleteform&formId=" + id;
         update(address, listener);
     }
 
     public void getFormFoodListToCart(long id, final HttpCallbackListener listener) {
 
-        String address = Globalvariable.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("select formFood from Form where id=" + id);
+        String address = APPCONST.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("select formFood from Form where id=" + id);
         getList(address, listener);
     }
 
     public void confirmForm(long id, final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=confirmForm&formId="+id;
+        String address = APPCONST.SERVER_ADDRESS + "type=confirmForm&formId="+id;
         update(address, listener);
     }
 
     public void cancelForm(long id, final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=cancelform&formId=" + id;
+        String address = APPCONST.SERVER_ADDRESS + "type=cancelform&formId=" + id;
         update(address, listener);
 
     }
 
     public void backForm(long id,String reason,final HttpCallbackListener listener){
-        String address = Globalvariable.SERVER_ADDRESS + "type=update&sql="
+        String address = APPCONST.SERVER_ADDRESS + "type=update&sql="
                 + Utility.encode("update Form set formState='WaitBack',note='"+Utility.encode(reason)+"' where id ="+id);
         update(address, listener);
     }
 
     public void getSenderInfo(String senderAccount,final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=select&sql=" +
+        String address = APPCONST.SERVER_ADDRESS + "type=select&sql=" +
                 Utility.encode("from SenderInfo where senderAccount='"+senderAccount+"'");
         getList(address, listener);
     }
@@ -110,7 +110,7 @@ public class FormPresenter extends BasePresenter {
         }catch (Exception e){
             Log.d("submitComplain",e.toString());
         }
-        String address = Globalvariable.SERVER_ADDRESS + "type=insert&inserData=" + Utility.encode(tabledata.toString());
+        String address = APPCONST.SERVER_ADDRESS + "type=insert&inserData=" + Utility.encode(tabledata.toString());
         update(address, listener);
     }
 

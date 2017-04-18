@@ -13,9 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +25,7 @@ import com.zhao.buyer.activity.SubmitCommentActivity;
 import com.zhao.buyer.activity.SubmitFormActivity;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.fragment.homefragment.FormFragment;
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
 import com.zhao.buyer.presenter.FormPresenter;
 
 import org.json.JSONArray;
@@ -70,7 +68,7 @@ public class FormItemAdapter extends ArrayAdapter<Form> {
                     Cart.getCart().setShop_id(formItem.getShopId());
                     Intent it = new Intent(getContext(), SubmitFormActivity.class);
                     it.putExtra("shopName",formItem.getShopName());
-                    it.putExtra(Globalvariable.CLEAR_CART,Globalvariable.CLEAR_CART);
+                    it.putExtra(APPCONST.CLEAR_CART, APPCONST.CLEAR_CART);
                     getContext().startActivity(it);
                 case -1:
                     Log.d("FormListItem handler", "error:" + msg.arg1);
@@ -370,9 +368,9 @@ public class FormItemAdapter extends ArrayAdapter<Form> {
             viewhandler.forms_item_back.setVisibility(View.GONE);
 
             Form form = getItem(i);
-            if(form.getFormState().equals(Globalvariable.WAIT_COMMENT)||
-                    form.getFormState().equals(Globalvariable.CANCEL)||
-                    form.getFormState().equals(Globalvariable.FINISH)) {
+            if(form.getFormState().equals(APPCONST.WAIT_COMMENT)||
+                    form.getFormState().equals(APPCONST.CANCEL)||
+                    form.getFormState().equals(APPCONST.FINISH)) {
                 viewhandler.forms_item_delete.setVisibility(View.VISIBLE);
             }
         }
@@ -388,43 +386,43 @@ public class FormItemAdapter extends ArrayAdapter<Form> {
     private void checkFormState(Viewhandler viewhandler,Form form){
         viewhandler.forms_item_delete.setVisibility(View.GONE);
         viewhandler.forms_item_again.setVisibility(View.VISIBLE);
-        if( form.getFormState().equals(Globalvariable.WAIT_PAY)){
+        if( form.getFormState().equals(APPCONST.WAIT_PAY)){
             viewhandler.forms_item_pay.setVisibility(View.VISIBLE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
             viewhandler.forms_item_cancel.setVisibility(View.VISIBLE);
             viewhandler.forms_item_back.setVisibility(View.GONE);
-        }else if(form.getFormState().equals(Globalvariable.WAIT_ARRIVED)){
+        }else if(form.getFormState().equals(APPCONST.WAIT_ARRIVED)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.VISIBLE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
             viewhandler.forms_item_cancel.setVisibility(View.GONE);
             viewhandler.forms_item_back.setVisibility(View.VISIBLE);
-        }else if(form.getFormState().equals(Globalvariable.WAIT_ACCEPT)){
+        }else if(form.getFormState().equals(APPCONST.WAIT_ACCEPT)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
             viewhandler.forms_item_cancel.setVisibility(View.VISIBLE);
             viewhandler.forms_item_back.setVisibility(View.GONE);
-        }else if(form.getFormState().equals(Globalvariable.WAIT_COMMENT)){
+        }else if(form.getFormState().equals(APPCONST.WAIT_COMMENT)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.VISIBLE);
             viewhandler.forms_item_cancel.setVisibility(View.GONE);
             viewhandler.forms_item_back.setVisibility(View.GONE);
-        }else if(form.getFormState().equals(Globalvariable.FINISH)){
+        }else if(form.getFormState().equals(APPCONST.FINISH)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
             viewhandler.forms_item_cancel.setVisibility(View.GONE);
             viewhandler.forms_item_back.setVisibility(View.GONE);
-        }else if(form.getFormState().equals(Globalvariable.CANCEL)){
+        }else if(form.getFormState().equals(APPCONST.CANCEL)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
             viewhandler.forms_item_cancel.setVisibility(View.GONE);
             viewhandler.forms_item_back.setVisibility(View.GONE);
-        }else if(form.getFormState().equals(Globalvariable.WAIT_BACK)){
+        }else if(form.getFormState().equals(APPCONST.WAIT_BACK)){
             viewhandler.forms_item_pay.setVisibility(View.GONE);
             viewhandler.forms_item_confirm.setVisibility(View.GONE);
             viewhandler.forms_item_goComment.setVisibility(View.GONE);
@@ -471,13 +469,13 @@ public class FormItemAdapter extends ArrayAdapter<Form> {
 
     private String parseFormState(String state){
 
-        if(state.equals(Globalvariable.WAIT_ACCEPT)) return "待接单";
-        else if(state.equals(Globalvariable.WAIT_PAY)) return "待支付";
-        else if(state.equals(Globalvariable.FINISH)) return "订单完成";
-        else if(state.equals(Globalvariable.CANCEL)) return "已取消";
-        else if(state.equals(Globalvariable.WAIT_ARRIVED)) return "待送达";
-        else if(state.equals(Globalvariable.WAIT_COMMENT)) return "待评价";
-        else if(state.equals(Globalvariable.WAIT_BACK))  return "待退单";
+        if(state.equals(APPCONST.WAIT_ACCEPT)) return "待接单";
+        else if(state.equals(APPCONST.WAIT_PAY)) return "待支付";
+        else if(state.equals(APPCONST.FINISH)) return "订单完成";
+        else if(state.equals(APPCONST.CANCEL)) return "已取消";
+        else if(state.equals(APPCONST.WAIT_ARRIVED)) return "待送达";
+        else if(state.equals(APPCONST.WAIT_COMMENT)) return "待评价";
+        else if(state.equals(APPCONST.WAIT_BACK))  return "待退单";
         return "";
     }
 

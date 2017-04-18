@@ -15,8 +15,9 @@ import android.os.Handler;
 
 import com.zhao.buyer.Database.BuyerDatabaseHelper;
 import com.zhao.buyer.R;
+import com.zhao.buyer.callback.ResultCallback;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
 import com.zhao.buyer.presenter.LoginPresenter;
 
 import java.io.InputStream;
@@ -73,7 +74,25 @@ public class LoginActivity extends BaseActivity {
 //                }
                 else{
                     pb.setVisibility(View.VISIBLE);
-                    new LoginPresenter().loginCheck(acc, pas, new HttpCallbackListener() {
+                    new LoginPresenter().loginCheck(acc, pas, new ResultCallback() {
+
+                        @Override
+                        public void onFinish(Object o, int code) {
+                            if(code == 0){
+
+
+                                handler.sendMessage(handler.obtainMessage(1,"登陆成功"));
+                            }else {
+                                handler.sendMessage(handler.obtainMessage(2,"用户名或密码错误"));
+                            }
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+                            handler.sendMessage(handler.obtainMessage(-1,"-1"));
+                        }
+                    });
+                   /* new LoginPresenter().loginCheck(acc, pas, new HttpCallbackListener() {
                         @Override
                         public void onFinish(Bitmap bm){}
                         @Override
@@ -103,7 +122,7 @@ public class LoginActivity extends BaseActivity {
                             Log.d("Http", e.toString());
 
                         }
-                    });
+                    });*/
                 }
             }
         });
@@ -159,13 +178,15 @@ public class LoginActivity extends BaseActivity {
     }
 
     public void saveLoginState(){
-        Globalvariable.LOGIN_STATE = true;
-        Globalvariable.ACCOUNT = account.getText().toString();
-        Globalvariable.PASSWROD = password.getText().toString();
+        APPCONST.LOGIN_STATE = true;
+        APPCONST.ACCOUNT = account.getText().toString();
+        APPCONST.PASSWROD = password.getText().toString();
         BuyerDatabaseHelper dbh = new BuyerDatabaseHelper(this,"Buyer.db",null,1);
         SQLiteDatabase db = dbh.getWritableDatabase();
         db.execSQL("delete from User");
         db.execSQL("insert into User(account,password) values(?,?)",
-                new String[]{Globalvariable.ACCOUNT, Globalvariable.PASSWROD});
+                new String[]{APPCONST.ACCOUNT, APPCONST.PASSWROD});
+
+
     }
 }

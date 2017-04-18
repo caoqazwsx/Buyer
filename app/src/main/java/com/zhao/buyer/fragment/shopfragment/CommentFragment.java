@@ -22,7 +22,7 @@ import com.zhao.buyer.R;
 import com.zhao.buyer.activity.ShopActivity;
 import com.zhao.buyer.custom.Grade;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Comment;
 import com.zhao.buyer.itemmodel.CommentItemAdapter;
 import com.zhao.buyer.presenter.CommentPresenter;

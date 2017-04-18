@@ -22,7 +22,7 @@
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>
         <!--<item name="android:windowIsFloating">true</item>--> <!--窗口是否悬浮-->
-        <item name="android:windowIsTranslucent">true</item>     <!--窗口是否半透明——是（与第一条配合使用）-->
+        <item name="android:windowIsTranslucent">true</item>    <!--窗口是否半透明——是（与第一条配合使用）-->
         <item name="android:windowContentOverlay">@null</item>
         <!--<item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
         <item name="android:backgroundDimEnabled">true</item>

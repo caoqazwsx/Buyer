@@ -4,8 +4,8 @@ import android.content.Context;
 import android.location.Location;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Shop;
 
 
@@ -16,7 +16,7 @@ public class ShopListPresenter extends BasePresenter{
 
 
     public void getShopList(double lng,double lat,int radius,final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS+
+        String address = APPCONST.SERVER_ADDRESS+
                 "type=nearbyshop&radius="+radius+"&location="+lng+","+lat ;
         getList(address,listener);
     }

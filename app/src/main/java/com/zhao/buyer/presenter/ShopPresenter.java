@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.httpconnection.ServerResponse;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,7 +22,7 @@ public class ShopPresenter extends BasePresenter {
     public void getShopName(int shop_id, final HttpCallbackListener listener) {
         String order = "type=select&sql=" + Utility.encode("from Shop where id=" + shop_id);
         ServerResponse sr = new ServerResponse();
-        sr.getStringResponse(Globalvariable.SERVER_ADDRESS + order, new HttpCallbackListener() {
+        sr.getStringResponse(APPCONST.SERVER_ADDRESS + order, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
                 try {
@@ -62,13 +62,13 @@ public class ShopPresenter extends BasePresenter {
     }
 
     public void getFoodList(int shop_id, final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from Food where shopId=" + shop_id);
+        String address = APPCONST.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from Food where shopId=" + shop_id);
         getList(address, listener);
     }
 
     public void getCollect(final int shop_id, final HttpCallbackListener listener) {
-        String address = Globalvariable.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from BuyerInfo where buyerAccount='"
-                + Globalvariable.ACCOUNT+"'");
+        String address = APPCONST.SERVER_ADDRESS + "type=select&sql=" + Utility.encode("from BuyerInfo where buyerAccount='"
+                + APPCONST.ACCOUNT+"'");
         getList(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
@@ -148,8 +148,8 @@ public class ShopPresenter extends BasePresenter {
         }
         String address = null;
         try {
-            address = Globalvariable.SERVER_ADDRESS + "type=update&sql=" +
-                    Utility.encode("update BuyerInfo set collect='" + ja.toString() + "' where buyerAccount='" + Globalvariable.ACCOUNT + "'");
+            address = APPCONST.SERVER_ADDRESS + "type=update&sql=" +
+                    Utility.encode("update BuyerInfo set collect='" + ja.toString() + "' where buyerAccount='" + APPCONST.ACCOUNT + "'");
         } catch (Exception e) {
             Log.d("ShopPresenter", e.toString());
         }

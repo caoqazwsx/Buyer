@@ -20,7 +20,7 @@ import com.zhao.buyer.custom.FragmentTabHost;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.fragment.shopfragment.*;
 
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
 import com.zhao.buyer.itemmodel.Cart;
 import com.zhao.buyer.presenter.ShopPresenter;
 
@@ -111,9 +111,9 @@ public class ShopActivity extends BaseActivity {
 
     private void initView() {
         Intent it = getIntent();
-        shop_id = it.getIntExtra("shop_id", Globalvariable.ERROR);
+        shop_id = it.getIntExtra("shop_id", APPCONST.ERROR);
         shop_name = it.getStringExtra("shop_name");
-        bot_price = it.getDoubleExtra("bot_price", Globalvariable.ERROR);
+        bot_price = it.getDoubleExtra("bot_price", APPCONST.ERROR);
         serviceTime = it.getStringExtra("serviceTime");
         deliveryService = it.getStringExtra("deliveryService");
         specialOffer = it.getStringExtra("specialOffer");

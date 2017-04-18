@@ -23,7 +23,7 @@ import com.zhao.buyer.R;
 import com.zhao.buyer.activity.ShopActivity;
 import com.zhao.buyer.custom.DownUpListView;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Shop;
 import com.zhao.buyer.itemmodel.ShopItemAdapter;
 import com.zhao.buyer.presenter.LocationPresenter;
@@ -47,7 +47,7 @@ public class ShopFragment extends Fragment {
     private ArrayList<Shop> shopItems;
     private View rootView;
     private DownUpListView listView;
-   private  ShopListPresenter slp;
+    private  ShopListPresenter slp;
     private ProgressBar progressBar;
     private LocationManager locationManager;
     private String provider;

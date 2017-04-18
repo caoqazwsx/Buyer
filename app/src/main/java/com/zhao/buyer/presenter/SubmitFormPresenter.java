@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.httpconnection.ServerResponse;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Cart;
 import com.zhao.buyer.itemmodel.CartFoodItem;
 
@@ -43,7 +43,7 @@ public class SubmitFormPresenter extends BasePresenter{
             tabledata.put("formFood",getFormFood());
             formId = Long.parseLong(createFormId());
             tabledata.put("id",formId);
-            tabledata.put("buyerAccount", Globalvariable.ACCOUNT);
+            tabledata.put("buyerAccount", APPCONST.ACCOUNT);
             tabledata.put("submitTime", Utility.getStringNowTime());
             tabledata.put("note", Utility.encode(note));
             tabledata.put("payPrice",pay_price);
@@ -55,7 +55,7 @@ public class SubmitFormPresenter extends BasePresenter{
         }
         ServerResponse sr = new ServerResponse();
         Log.d("SubmitFormPresenter ", "data"+indata.toString());
-        String addr = "http://"+Globalvariable.ServerIP+"/android_Server/requestAccept.action?type=submitform&inserData=" + Utility.encode(indata.toString());
+        String addr = "http://"+ APPCONST.ServerIP+"/android_Server/requestAccept.action?type=submitform&inserData=" + Utility.encode(indata.toString());
         sr.getStringResponse(addr, new HttpCallbackListener() {
             @Override
             public void onFinish(Bitmap bm){}
@@ -85,8 +85,8 @@ public class SubmitFormPresenter extends BasePresenter{
     }
 
     public void getAddress(final HttpCallbackListener listener){
-        String address = Globalvariable.SERVER_ADDRESS+"type=select&sql="+Utility.encode("from DeliveryAddress where buyerAccount='"
-                +Globalvariable.ACCOUNT+"'");
+        String address = APPCONST.SERVER_ADDRESS+"type=select&sql="+Utility.encode("from DeliveryAddress where buyerAccount='"
+                + APPCONST.ACCOUNT+"'");
         getList(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {

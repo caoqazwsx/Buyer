@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.httpconnection.ServerResponse;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 
 import org.json.JSONObject;
 
@@ -23,7 +23,7 @@ import java.util.List;
 public class LocationPresenter extends BasePresenter{
 
     public void getStringLocation(double lng,double lat, final HttpCallbackListener listener){
-        String address = Globalvariable.GEOCODING_SERVER_ADDRESS +"ak="+Globalvariable.BAIDU_MAP_AK+"&mcode="+Globalvariable.BAIDU_MAP_MCODE+
+        String address = APPCONST.GEOCODING_SERVER_ADDRESS +"ak="+ APPCONST.BAIDU_MAP_AK+"&mcode="+ APPCONST.BAIDU_MAP_MCODE+
                 "&&output=json&pois=0&location="+lat+","+lng;
         ServerResponse sr = new ServerResponse();
         sr.getStringResponse(address, new HttpCallbackListener() {
@@ -61,45 +61,20 @@ public class LocationPresenter extends BasePresenter{
     }
 
     public void getPlaceSuggestionList(String key,final HttpCallbackListener listener){
-        String address = Globalvariable.PLACE_SUGGESTION_ADDRESS+"&region=131&output=json"+
-                "&ak="+Globalvariable.BAIDU_MAP_AK+"&mcode="+Globalvariable.BAIDU_MAP_MCODE+"&query="+ Utility.encode(key);
-        ServerResponse sr = new ServerResponse();
-        sr.getStringResponse(address, new HttpCallbackListener() {
-            @Override
-            public void onFinish(String response) {
-                try {
-                    JSONObject jo = new JSONObject(response);
-                    if(jo.getInt("status") == 0) {
-                        String strPlaceSuggest = jo.getString("result");
-                        listener.onFinish(strPlaceSuggest);
-                    }else{
-                        Log.d("Location",jo.getString("message"));
-                        listener.onFinish("error");
-                    }
-                }catch (Exception e){
-                    listener.onError(e);
-                }
-            }
-            @Override
-            public void onFinish(InputStream in) {
+        String address = APPCONST.PLACE_SUGGESTION_ADDRESS+"region=131&output=json"+
+                "&ak="+ APPCONST.BAIDU_MAP_AK+"&mcode="+ APPCONST.BAIDU_MAP_MCODE+"&query="+ Utility.encode(key);
+       getBaiduAPI(address,listener);
+    }
 
-            }
+    public void getNearbyAddress(double lng,double lat, final HttpCallbackListener listener){
+        String address = APPCONST.PLACE_SEARCH_ADDRESS + "query="+Utility.encode("地标")+"&page_size=10&page_num=0&scope=1" +
+                "&location="+lat+","+lng+"&radius=500&output=json&ak="+ APPCONST.BAIDU_MAP_AK+"&mcode="+ APPCONST.BAIDU_MAP_MCODE;
+        getBaiduAPI(address,listener);
 
-            @Override
-            public void onFinish(Bitmap bm) {
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-                listener.onError(e);
-
-            }
-        });
     }
 
     public Location getCurrentLocation(Context context){
-         Location location = null;
+        Location location = null;
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         String provider = null;
         List<String> providerList = locationManager.getProviders(true);

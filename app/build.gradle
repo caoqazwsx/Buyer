@@ -1,13 +1,19 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'//greendao插件dependencies
+
+
+
+
+
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "com.zhao.buyer.activity"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -22,8 +28,17 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.android.support:support-v4:23.2.0'
+    compile 'com.android.support:appcompat-v7:25.3.0'
+    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:support-v4:25.3.0'
+    compile 'org.greenrobot:greendao:3.2.0'
     compile files('libs/gson-2.3.1.jar')
+    compile files('libs/BaiduLBS_Android.jar')
+    compile files('src/main/jniLibs/sun.misc.BASE64Decoder.jar')
+}
+
+greendao {
+    schemaVersion 6
+    daoPackage 'com.zhao.greendao.gen'
+    targetGenDir 'src/main/java'
 }

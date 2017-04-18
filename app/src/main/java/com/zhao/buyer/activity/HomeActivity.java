@@ -10,7 +10,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,7 +20,8 @@ import android.widget.Toast;
 import com.zhao.buyer.fragment.homefragment.FormFragment;
 import com.zhao.buyer.fragment.homefragment.ShopFragment;
 import com.zhao.buyer.fragment.homefragment.MineFragment;
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.greendao.service.TestService;
 
 public class HomeActivity extends BaseActivity {
     private FragmentTabHost mTabHost;
@@ -48,6 +48,8 @@ public class HomeActivity extends BaseActivity {
         checkLoginState();
         initView();
         exitTime = 0;
+        new TestService().getUser();
+        //自定义
     }
 
 
@@ -104,9 +106,9 @@ public class HomeActivity extends BaseActivity {
                 SQLiteDatabase db = dbh.getWritableDatabase();
                 Cursor cursor = db.rawQuery("select * from User",null);
                 if(cursor.moveToFirst()){
-                    Globalvariable.ACCOUNT = cursor.getString(cursor.getColumnIndex("account"));
-                    Globalvariable.PASSWROD = cursor.getString(cursor.getColumnIndex("password"));
-                    Globalvariable.LOGIN_STATE = true;
+                    APPCONST.ACCOUNT = cursor.getString(cursor.getColumnIndex("account"));
+                    APPCONST.PASSWROD = cursor.getString(cursor.getColumnIndex("password"));
+                    APPCONST.LOGIN_STATE = true;
                 }
             }
         }).start();

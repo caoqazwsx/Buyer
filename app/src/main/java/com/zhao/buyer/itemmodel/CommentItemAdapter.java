@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.zhao.buyer.R;
 import com.zhao.buyer.custom.Grade;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.presenter.ShopPresenter;
 
 import java.io.InputStream;

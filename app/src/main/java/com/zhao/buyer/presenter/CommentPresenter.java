@@ -3,8 +3,8 @@ package com.zhao.buyer.presenter;
 import android.util.Log;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.CartFoodItem;
 
 import org.json.JSONObject;
@@ -19,7 +19,7 @@ public class CommentPresenter extends BasePresenter {
     public void submitComment(long formId, Integer shopId, String formFood,Integer shop_grade, Integer send_grade,String commentText,
                               final HttpCallbackListener listener){
         String indata = initComment(formId,shopId,formFood,shop_grade,send_grade,commentText);
-        String address = Globalvariable.SERVER_ADDRESS+"type=insert&inserData=" + Utility.encode(indata);
+        String address = APPCONST.SERVER_ADDRESS+"type=insert&inserData=" + Utility.encode(indata);
         update(address,listener);
 
     }
@@ -38,7 +38,7 @@ public class CommentPresenter extends BasePresenter {
         JSONObject indata = new JSONObject();  //前台数据获取
         JSONObject tabledata = new JSONObject();
         try {
-            tabledata.put("commentAccount", Globalvariable.ACCOUNT);
+            tabledata.put("commentAccount", APPCONST.ACCOUNT);
             tabledata.put("shopId", shopId);
             tabledata.put("formId", formId);
             tabledata.put("food", food);
@@ -57,7 +57,7 @@ public class CommentPresenter extends BasePresenter {
     }
 
     public void getCommentList(int shopId,final HttpCallbackListener listener){
-        String address = Globalvariable.SERVER_ADDRESS+"type=select&sql="+Utility.encode("from Comment where shopId="+shopId+" order by commentTime desc");
+        String address = APPCONST.SERVER_ADDRESS+"type=select&sql="+Utility.encode("from Comment where shopId="+shopId+" order by commentTime desc");
         getList(address,listener);
     }
 }

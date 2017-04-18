@@ -5,8 +5,8 @@ import android.util.Log;
 
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.httpconnection.ServerResponse;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 
 import org.json.JSONObject;
 
@@ -20,7 +20,7 @@ public class BasePresenter {
 
     public void getPicture(String path, final HttpCallbackListener listener){
 
-        String address = Globalvariable.SERVER_ADDRESS+"type=picture&path="+ Utility.encode(path);
+        String address = APPCONST.SERVER_ADDRESS+"type=picture&path="+ Utility.encode(path);
         ServerResponse sr = new ServerResponse();
         sr.getBitmapResponse(address, new HttpCallbackListener() {
             @Override
@@ -129,6 +129,42 @@ public class BasePresenter {
                 if (listener != null) {
                     listener.onError(e);
                 }
+
+            }
+        });
+    }
+
+    public void getBaiduAPI(String address,final HttpCallbackListener listener){
+        ServerResponse sr = new ServerResponse();
+        sr.getStringResponse(address, new HttpCallbackListener() {
+            @Override
+            public void onFinish(String response) {
+                try {
+                    JSONObject jo = new JSONObject(response);
+                    if(jo.getInt("status") == 0) {
+                        String result = jo.getString("result");
+                        listener.onFinish(result);
+                    }else{
+                        Log.d("Location",jo.getString("message"));
+                        listener.onFinish("error");
+                    }
+                }catch (Exception e){
+                    listener.onError(e);
+                }
+            }
+            @Override
+            public void onFinish(InputStream in) {
+
+            }
+
+            @Override
+            public void onFinish(Bitmap bm) {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                listener.onError(e);
 
             }
         });

@@ -124,7 +124,6 @@ public class MyAddressActivity extends BaseActivity {
             public void onFinish(String response) {
                 try {
                     JSONArray ja = new JSONArray(response);
-
                     if (ja.length() != 0) {
                         for (int i = 0; i < ja.length(); i++) {
                             deliveryAddresses.add(new Gson().fromJson(ja.getString(i), DeliveryAddress.class));

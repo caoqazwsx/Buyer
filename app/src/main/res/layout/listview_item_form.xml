@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -17,6 +18,7 @@
             android:padding="5dp"
             android:textSize="20dp"
             android:text="shop_name"/>
+
         <TextView
             android:id="@+id/forms_item_state"
             android:layout_width="wrap_content"
@@ -24,6 +26,7 @@
             android:padding="5dp"
             android:textSize="20dp"
             android:text="state"/>
+
     </LinearLayout>
 
     <ImageView

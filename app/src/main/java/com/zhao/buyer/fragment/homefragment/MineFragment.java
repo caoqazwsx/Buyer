@@ -25,7 +25,7 @@ import com.zhao.buyer.activity.MyCollectActivity;
 import com.zhao.buyer.activity.MyCommentActivity;
 import com.zhao.buyer.R;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
 import com.zhao.buyer.presenter.MinePresenter;
 
 import org.json.JSONArray;
@@ -56,7 +56,7 @@ public class MineFragment extends Fragment {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 1:
-                    balance.setText("￥"+(String)msg.obj);
+                    balance.setText("￥" + (String) msg.obj);
                     break;
                 case -1:
                     balance.setText("00.00");
@@ -64,33 +64,35 @@ public class MineFragment extends Fragment {
             }
         }
     };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        if(rootView == null){
+        if (rootView == null) {
             View view = inflater.inflate(R.layout.fragment_mine, container, false);
-            account = (TextView)view.findViewById(R.id.mine_account);
-            logout = (Button)view.findViewById(R.id.mine_logout);
-            login = (Button)view.findViewById(R.id.mine_login);
-            balance = (TextView)view.findViewById(R.id.mine_balance);
-            charge = (TextView)view.findViewById(R.id.mine_charge);
-            updBalance = (LinearLayout)view.findViewById(R.id.mine_updBalance);
-            myComment = (LinearLayout)view.findViewById(R.id.mine_comment);
-            myCollect = (LinearLayout)view.findViewById(R.id.mine_collect);
-            myAddress = (LinearLayout)view.findViewById(R.id.mine_address);
-            help = (LinearLayout)view.findViewById(R.id.mine_help);
+            account = (TextView) view.findViewById(R.id.mine_account);
+            logout = (Button) view.findViewById(R.id.mine_logout);
+            login = (Button) view.findViewById(R.id.mine_login);
+            balance = (TextView) view.findViewById(R.id.mine_balance);
+            charge = (TextView) view.findViewById(R.id.mine_charge);
+            updBalance = (LinearLayout) view.findViewById(R.id.mine_updBalance);
+            myComment = (LinearLayout) view.findViewById(R.id.mine_comment);
+            myCollect = (LinearLayout) view.findViewById(R.id.mine_collect);
+            myAddress = (LinearLayout) view.findViewById(R.id.mine_address);
+            help = (LinearLayout) view.findViewById(R.id.mine_help);
             updBalance.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {init();
+                public void onClick(View v) {
+                    init();
                 }
             });
             charge.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(Globalvariable.LOGIN_STATE) {
-                    Intent it = new Intent(getActivity(), ChargeActivity.class);
-                    getActivity().startActivity(it);
-                    }else{
+                    if (APPCONST.LOGIN_STATE) {
+                        Intent it = new Intent(getActivity(), ChargeActivity.class);
+                        getActivity().startActivity(it);
+                    } else {
                         Toast.makeText(getActivity(), "未登录", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -98,10 +100,10 @@ public class MineFragment extends Fragment {
             myComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(Globalvariable.LOGIN_STATE) {
+                    if (APPCONST.LOGIN_STATE) {
                         Intent it = new Intent(getActivity(), MyCommentActivity.class);
                         getActivity().startActivity(it);
-                    }else{
+                    } else {
                         Toast.makeText(getActivity(), "未登录", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -109,10 +111,10 @@ public class MineFragment extends Fragment {
             myCollect.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(Globalvariable.LOGIN_STATE) {
-                    Intent it = new Intent(getActivity(), MyCollectActivity.class);
-                    getActivity().startActivity(it);
-                    }else{
+                    if (APPCONST.LOGIN_STATE) {
+                        Intent it = new Intent(getActivity(), MyCollectActivity.class);
+                        getActivity().startActivity(it);
+                    } else {
                         Toast.makeText(getActivity(), "未登录", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -120,11 +122,11 @@ public class MineFragment extends Fragment {
             myAddress.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(Globalvariable.LOGIN_STATE) {
-                    Intent it = new Intent(getActivity(), MyAddressActivity.class);
-                    it.putExtra("state","show");
-                    getActivity().startActivity(it);
-                    }else{
+                    if (APPCONST.LOGIN_STATE) {
+                        Intent it = new Intent(getActivity(), MyAddressActivity.class);
+                        it.putExtra("state", "show");
+                        getActivity().startActivity(it);
+                    } else {
                         Toast.makeText(getActivity(), "未登录", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -139,11 +141,11 @@ public class MineFragment extends Fragment {
             logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Globalvariable.LOGIN_STATE = false;
-                    Globalvariable.ACCOUNT = null;
-                    Globalvariable.PASSWROD =null;
+                    APPCONST.LOGIN_STATE = false;
+                    APPCONST.ACCOUNT = null;
+                    APPCONST.PASSWROD = null;
                     checkLoginState();
-                    BuyerDatabaseHelper dbh = new BuyerDatabaseHelper(getContext(),"Buyer.db",null,1);
+                    BuyerDatabaseHelper dbh = new BuyerDatabaseHelper(getContext(), "Buyer.db", null, 1);
                     SQLiteDatabase db = dbh.getWritableDatabase();
                     db.execSQL("delete from User");
                 }
@@ -156,14 +158,13 @@ public class MineFragment extends Fragment {
                     getActivity().startActivity(it);
                 }
             });
-            rootView=view;
-        }
-        else{
+            rootView = view;
+        } else {
             Log.d("mineFragment", "rootview != null");
             // 缓存的rootView需要判断是否已经被加过parent，如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
-            ViewGroup parent = (ViewGroup)rootView.getParent();
-            if(parent!=null){
-                Log.d("mineFragment","parent != null");
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+            if (parent != null) {
+                Log.d("mineFragment", "parent != null");
                 parent.removeView(rootView);
             }
         }
@@ -172,8 +173,7 @@ public class MineFragment extends Fragment {
     }
 
 
-
-    public void init(){
+    public void init() {
 
         MinePresenter mp = new MinePresenter();
         mp.getBalance(new HttpCallbackListener() {
@@ -215,7 +215,7 @@ public class MineFragment extends Fragment {
 
             @Override
             public void onError(Exception e) {
-                Log.d("mineFragment2",e.toString());
+                Log.d("mineFragment2", e.toString());
                 Message msg = new Message();
                 msg.what = -1;
                 handler.sendMessage(msg);
@@ -224,14 +224,13 @@ public class MineFragment extends Fragment {
         });
     }
 
-    public boolean checkLoginState(){
-        if(Globalvariable.LOGIN_STATE){
-            account.setText(Globalvariable.ACCOUNT);
+    public boolean checkLoginState() {
+        if (APPCONST.LOGIN_STATE) {
+            account.setText(APPCONST.ACCOUNT);
             logout.setVisibility(View.VISIBLE);
             login.setVisibility(View.GONE);
             return true;
-        }
-        else {
+        } else {
             account.setText("未登录");
             login.setVisibility(View.VISIBLE);
             logout.setVisibility(View.GONE);
@@ -242,8 +241,8 @@ public class MineFragment extends Fragment {
 
     @Override
     public void onResume() {
-        if(!isHidden()) {
-            if(checkLoginState()) init();
+        if (!isHidden()) {
+            if (checkLoginState()) init();
             else balance.setText("00.0");
         }
         super.onResume();

@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhao.buyer.R;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
 import com.zhao.buyer.itemmodel.Complain;
 import com.zhao.buyer.presenter.FormPresenter;
@@ -145,7 +145,7 @@ public class SubmitComplainActivity extends AppCompatActivity {
     }
 
     private void setComplain(){
-        complain.setBuyerAccount(Globalvariable.ACCOUNT);
+        complain.setBuyerAccount(APPCONST.ACCOUNT);
         complain.setFormId(getIntent().getLongExtra("formId",0));
         complain.setShopId(getIntent().getIntExtra("shopId",0));
         complain.setComplainState("WaitHandle");

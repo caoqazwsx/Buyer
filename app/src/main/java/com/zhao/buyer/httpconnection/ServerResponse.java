@@ -84,7 +84,6 @@ public class ServerResponse {
         });
     }
 
-
     private void setResponse(String response)
     {
         this.response = response;

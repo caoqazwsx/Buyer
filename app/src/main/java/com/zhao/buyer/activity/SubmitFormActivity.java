@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.zhao.buyer.R;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
-import com.zhao.buyer.globalvariable.Utility;
+import com.zhao.buyer.common.APPCONST;
+import com.zhao.buyer.common.Utility;
 import com.zhao.buyer.itemmodel.Cart;
 import com.zhao.buyer.itemmodel.FormFoodItemAdapter;
 import com.zhao.buyer.presenter.SubmitFormPresenter;
@@ -150,7 +150,7 @@ public class SubmitFormActivity extends BaseActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Globalvariable.LOGIN_STATE) {
+                if(APPCONST.LOGIN_STATE) {
                     if(addressLocation == null){
                         Toast.makeText(SubmitFormActivity.this,"请设置收货地址",Toast.LENGTH_SHORT).show();
                         return;
@@ -249,8 +249,8 @@ public class SubmitFormActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        String str = getIntent().getStringExtra(Globalvariable.CLEAR_CART);
-        if(str != null&&str.equals(Globalvariable.CLEAR_CART)){
+        String str = getIntent().getStringExtra(APPCONST.CLEAR_CART);
+        if(str != null&&str.equals(APPCONST.CLEAR_CART)){
             Cart.getCart().clear();
         }
         super.onDestroy();

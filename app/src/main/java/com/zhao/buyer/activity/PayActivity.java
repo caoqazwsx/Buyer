@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.zhao.buyer.R;
 import com.zhao.buyer.httpconnection.HttpCallbackListener;
-import com.zhao.buyer.globalvariable.Globalvariable;
+import com.zhao.buyer.common.APPCONST;
 import com.zhao.buyer.presenter.PayPresenter;
 
 import org.json.JSONArray;
@@ -74,7 +74,7 @@ public class PayActivity extends BaseActivity {
         pay_price = getIntent().getDoubleExtra("pay_price",0);
         form_id = getIntent().getLongExtra("form_id",0);
         PayPresenter pp = new PayPresenter();
-        pp.getBalance(Globalvariable.ACCOUNT, new HttpCallbackListener() {
+        pp.getBalance(APPCONST.ACCOUNT, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
                 if(!response.equals("null")) {
